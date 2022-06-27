@@ -3,7 +3,8 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import { useTransition } from "react";
-
+import words from "../words/index"
+import Fuse from "fuse.js";
 const terms = [
   'ابتسم',
   'احترم',
@@ -21,6 +22,12 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [isPending, startTransition] = useTransition();
   const [filterList, setFilterList] = useState([]);
+  const fuse = new Fuse(words,{
+    includeScore:true,
+    keys:['name']
+  })
+  
+  console.log(fuse.search("بسم الله"))
   const updateList = (e)=>{
     setInput(e.target.value);
     startTransition(()=>{
@@ -35,7 +42,7 @@ export default function Home() {
       <h2 className="mt-8 text-3xl font-medium">
         {"Write down what you want to translate".toUpperCase()}
       </h2>
-
+    
       <div dir="rtl" className="my-4 flex justify-center items-center">
         <input
           dir="rtl"
@@ -76,3 +83,25 @@ export default function Home() {
     </div>
   );
 }
+
+// export async function getStaticProps(){
+//   const query = `
+//   query MyQuery {
+//   words {
+//     name
+//     match
+//     imgs {
+//       id
+//       url
+//     }
+//   }
+// }`;
+
+//   const results = await request(process.env.API,query,{})
+//   return {
+//     props: {
+//       results,
+//     },
+//     revalidate: 60,
+//   };
+// }
