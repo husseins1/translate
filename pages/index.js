@@ -164,6 +164,14 @@ const country = require
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
+const social = require
+  .context(
+    "../public/sign language/social",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
 
 const englishObj = populateObj(english, "english");
 const monthsObj = populateObj(months, "months");
@@ -182,6 +190,9 @@ const mathObj = populateObj(math, "math");
 const transportObj = populateObj(transport, "transport");
 const countryObj = populateObj(country, "country");
 const adjectivesObj = populateObj(adjectives, "adjectives");
+const animalsObj = populateObj(animals, "animals");
+const profsObj = populateObj(profs, "profs");
+const socialObj = populateObj(social, "social");
 
 const all = [
   ...englishObj,
@@ -201,6 +212,9 @@ const all = [
   ...transportObj,
   ...countryObj,
   ...adjectivesObj,
+  ...animalsObj,
+  ...profsObj,
+  ...socialObj,
 ];
 
 const fuse = new Fuse(all, {
