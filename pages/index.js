@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTransition } from "react";
 import words from "../words/index";
 import Fuse from "fuse.js";
 
 const populateObj = (paths, folderName) => {
-  let obj = {};
-  paths.forEach(
+  
+  return paths.map(
     (ele) =>
-      (obj[
-        ele.replace(/\.(png|jpe?g|svg|jpg|JPG)$/, "")
-      ] = `${folderName}/${ele}`)
+      ({
+       name: ele.replace(/\.(png|jpe?g|svg|jpg|JPG)$/, ""),
+
+      url: `${folderName}/${ele}`})
   );
   return obj;
 };
@@ -182,7 +183,7 @@ const transportObj = populateObj(transport, "transport");
 const countryObj = populateObj(country, "country");
 const adjectivesObj = populateObj(adjectives, "adjectives");
 
-const all = {
+const all = [
   ...englishObj,
   ...monthsObj,
   ...verbsObj,
@@ -200,26 +201,28 @@ const all = {
   ...transportObj,
   ...countryObj,
   ...adjectivesObj,
-};
+];
 
+const fuse = new Fuse(all, {
+  includeScore: true,
+  keys: ["name"],
+});
 export default function Home() {
   const [input, setInput] = useState("");
   const [isPending, startTransition] = useTransition();
-  const [filterList, setFilterList] = useState([]);
+  const [filterList, setFilterList] = useState(all);
 
-  console.log(JSON.stringify(all));
+  // console.log(JSON.stringify(all));
 
-  const fuse = new Fuse(words, {
-    includeScore: true,
-    keys: ["name"],
-  });
 
-  // console.log(fuse.search("بسم الله"))
+
+
   const updateList = (e) => {
+    console.log(filterList);
     setInput(e.target.value);
     startTransition(() => {
       setFilterList(
-        categories.filter((term) => term.indexOf(e.target.value) > -1)
+        fuse.search(e.target.value)
       );
     });
   };
@@ -229,7 +232,7 @@ export default function Home() {
         {"اكتب ما تبحث عنه".toUpperCase()}
       </h2>
 
-      <img src="/sign language/adjectives/غضبان.JPG" />
+      {/* <img src="/sign language/adjectives/غضبان.JPG" /> */}
       <div dir="rtl" className="my-4 flex justify-center items-center">
         <input
           dir="rtl"
@@ -255,16 +258,19 @@ export default function Home() {
       </div>
       <div className="grid gap-4">
         {input
-          ? filterList.map((term, index) => (
+          ? filterList.slice(0,5).map((term, index) => (
               <div
                 key={index}
                 className="flex flex-col justify-center items-center p-4"
               >
-                <img src={term + ".JPG"} alt={term} />
-                <h3 className="text-xl">{term}</h3>
+                <img src={'/sign language/'+term?.item?.url} alt={term?.item?.name} />
+                <h3 className="text-xl">{term?.item?.name}</h3>
               </div>
             ))
           : null}
+          {/* {
+            console.log(filterList[0].item.url)
+          } */}
       </div>
     </div>
   );
