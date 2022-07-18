@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTransition } from "react";
 import Fuse from "fuse.js";
 
-const populateObj = (paths, folderName) => {
+const getList = (paths, folderName) => {
   
   return paths.map(
     (ele) =>
@@ -12,27 +12,7 @@ const populateObj = (paths, folderName) => {
       url: `${folderName}/${ele}`})
   );
 };
-const categories = [
-  "ابجدية اللغة الانكليزية",
-  "الاشهر والايام والوقت",
-  "الافعال",
-  "البيت ومحتوياته",
-  "الحيوانات والطيور والحشرات",
-  "الخضروات",
-  "الرياضة",
-  "العلاقات الاجتماعية والتحية والسلام",
-  "العلوم والظواهر الطبيعية",
-  "الفنون",
-  "الكمبيوتر",
-  "المدرسة ومستلزماتها",
-  "المهن",
-  "ديانة",
-  "رياضيات",
-  "صفات",
-  "وسائط النقل",
-  "وطنية",
-  "اجتماعيات"
-];
+
 
 const english = require
   .context(
@@ -164,26 +144,26 @@ const social = require
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 
-const englishObj = populateObj(english, "english");
-const monthsObj = populateObj(months, "months");
-const verbsObj = populateObj(verbs, "verbs");
-const houseObj = populateObj(house, "house");
-const vegetablesObj = populateObj(vegetables, "vegetables");
-const sportObj = populateObj(sport, "sport");
-const greetingsObj = populateObj(greetings, "greetings");
-const scienceObj = populateObj(science, "science");
-const artsObj = populateObj(arts, "arts");
+const englishObj = getList(english, "english");
+const monthsObj = getList(months, "months");
+const verbsObj = getList(verbs, "verbs");
+const houseObj = getList(house, "house");
+const vegetablesObj = getList(vegetables, "vegetables");
+const sportObj = getList(sport, "sport");
+const greetingsObj = getList(greetings, "greetings");
+const scienceObj = getList(science, "science");
+const artsObj = getList(arts, "arts");
 
-const computerObj = populateObj(computer, "computer");
-const schoolObj = populateObj(school, "school");
-const relgionObj = populateObj(relgion, "relgion");
-const mathObj = populateObj(math, "math");
-const transportObj = populateObj(transport, "transport");
-const countryObj = populateObj(country, "country");
-const adjectivesObj = populateObj(adjectives, "adjectives");
-const animalsObj = populateObj(animals, "animals");
-const profsObj = populateObj(profs, "profs");
-const socialObj = populateObj(social, "social");
+const computerObj = getList(computer, "computer");
+const schoolObj = getList(school, "school");
+const relgionObj = getList(relgion, "relgion");
+const mathObj = getList(math, "math");
+const transportObj = getList(transport, "transport");
+const countryObj = getList(country, "country");
+const adjectivesObj = getList(adjectives, "adjectives");
+const animalsObj = getList(animals, "animals");
+const profsObj = getList(profs, "profs");
+const socialObj = getList(social, "social");
 
 const all = [
   ...englishObj,
@@ -207,19 +187,114 @@ const all = [
   ...socialObj,
 ];
 
-const fuse = new Fuse(all, {
-  includeScore: true,
-  keys: ["name"],
-});
+const categories = [
+  {
+    ar: "ابجدية اللغة الانكليزية",
+    list: englishObj,
+  },
+  {
+    ar: "الاشهر والايام والوقت",
+    list: monthsObj,
+  },
+  {
+    ar: "الافعال",
+    list: verbsObj,
+  },
+  {
+    ar: "البيت ومحتوياته",
+    list: houseObj,
+  },
+  {
+    ar: "الحيوانات والطيور والحشرات",
+    list: animalsObj,
+  },
+  {
+    ar: "الخضروات",
+    list: vegetablesObj,
+  },
+  {
+    ar: "الرياضة",
+    list: sportObj,
+  },
+  {
+    ar: "العلاقات الاجتماعية والتحية والسلام",
+    list: greetingsObj,
+  },
+  {
+    ar: "العلوم والظواهر الطبيعية",
+    list: scienceObj,
+  },
+  {
+    ar: "الفنون",
+    list: artsObj,
+  },
+  {
+    ar: "الكمبيوتر",
+    list: computerObj,
+  },
+  {
+    ar: "المدرسة ومستلزماتها",
+    list: schoolObj,
+  },
+  {
+    ar: "المهن",
+    list: profsObj,
+  },
+  {
+    ar: "ديانة",
+    list: relgionObj,
+  },
+  {
+    ar: "رياضيات",
+    list: mathObj,
+  },
+  {
+    ar: "صفات",
+    list: adjectivesObj,
+  },
+  {
+    ar: "وسائط النقل",
+    list: transportObj,
+  },
+  {
+    ar: "وطنية",
+    list: countryObj,
+  },
+  {
+    ar: "اجتماعيات",
+    list: socialObj,
+  },
+];
+
+// const fuse = new Fuse(all, {
+//   includeScore: true,
+//   keys: ["name"],
+// });
 export default function Home() {
   const [input, setInput] = useState("");
+  const [fuse, setFuse] = useState(
+    new Fuse(all, {
+      includeScore: true,
+      keys: ["name"],
+     
+    })
+  );
   const [isPending, startTransition] = useTransition();
   const [filterList, setFilterList] = useState(all);
-
- 
+  const [refine,setRefine] = useState("");
+  const handleRefine =(e)=>{
+    
+    setInput("")
+    if(e.target.innerText === refine){
+      setRefine("");
+      return;
+    }
+    setRefine(e.target.innerText);
+  }
+  
 
   const updateList = (e) => {
-    console.log(filterList);
+   
     setInput(e.target.value);
     startTransition(() => {
       setFilterList(
@@ -227,11 +302,33 @@ export default function Home() {
       );
     });
   };
+
+  useEffect(()=>{
+    const filter = categories.find((ele) => refine === ele.ar);
+   
+    if(!filter){
+      setFuse(
+        new Fuse(all, {
+          includeScore: true,
+          keys: ["name"],
+        })
+      ); 
+      return;
+    }
+    setFuse(
+      new Fuse(filter.list, {
+        includeScore: true,
+        keys: ["name"],
+        
+      })
+    ); 
+    
+    
+    
+  },[refine])
   return (
     <div className="container text-center mx-auto">
-      <h2 className="mt-8 text-3xl">
-        اكتب ما تبحث عنه
-      </h2>
+      <h2 className="mt-8 text-3xl">اكتب ما تبحث عنه</h2>
       <div dir="rtl" className="my-4  flex justify-center items-center mx-auto">
         <input
           dir="rtl"
@@ -256,6 +353,18 @@ export default function Home() {
           />
         </svg>
       </div>
+      <div className="flex justify-center items-center flex-wrap">
+        {categories.map((ele) => (
+          <button
+            onClick={handleRefine}
+            key={ele.list}
+            className={` m-4 bg-gray-300 whitespace-nowrap
+             p-2 rounded hover:text-white text-sm ${refine===ele.ar && "bg-blue-400 text-white"}`}
+          >
+            {ele.ar}
+          </button>
+        ))}
+      </div>
       <div className="grid gap-4">
         {input
           ? filterList.slice(0, 5).map((term, index) => (
@@ -271,9 +380,6 @@ export default function Home() {
               </div>
             ))
           : null}
-        {/* {
-            console.log(filterList[0].item.url)
-          } */}
       </div>
     </div>
   );
