@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTransition } from "react";
-import words from "../words/index";
 import Fuse from "fuse.js";
 
 const populateObj = (paths, folderName) => {
@@ -12,7 +11,6 @@ const populateObj = (paths, folderName) => {
 
       url: `${folderName}/${ele}`})
   );
-  return obj;
 };
 const categories = [
   "ابجدية اللغة الانكليزية",
@@ -25,7 +23,6 @@ const categories = [
   "العلاقات الاجتماعية والتحية والسلام",
   "العلوم والظواهر الطبيعية",
   "الفنون",
-  "القواعد والابجدية",
   "الكمبيوتر",
   "المدرسة ومستلزماتها",
   "المهن",
@@ -34,6 +31,7 @@ const categories = [
   "صفات",
   "وسائط النقل",
   "وطنية",
+  "اجتماعيات"
 ];
 
 const english = require
@@ -100,14 +98,7 @@ const arts = require
   .context("../public/sign language/arts", false, /\.(png|jpe?g|svg|jpg|JPG)$/)
   .keys()
   .map((ele) => ele.replace(/\../, ""));
-// const grammar = require
-//   .context(
-//     "../public/sign language/القواعد والابجدية",
-//     false,
-//     /\.(png|jpe?g|svg|jpg|JPG)$/
-//   )
-//   .keys()
-//   .map((ele) => ele.replace(/\../, ""));
+
 const computer = require
   .context(
     "../public/sign language/computer",
@@ -182,7 +173,7 @@ const sportObj = populateObj(sport, "sport");
 const greetingsObj = populateObj(greetings, "greetings");
 const scienceObj = populateObj(science, "science");
 const artsObj = populateObj(arts, "arts");
-// const grammarObj =populateObj(grammar);
+
 const computerObj = populateObj(computer, "computer");
 const schoolObj = populateObj(school, "school");
 const relgionObj = populateObj(relgion, "relgion");
@@ -204,7 +195,6 @@ const all = [
   ...greetingsObj,
   ...scienceObj,
   ...artsObj,
-  // ...grammarObj,
   ...computerObj,
   ...schoolObj,
   ...relgionObj,
@@ -226,10 +216,7 @@ export default function Home() {
   const [isPending, startTransition] = useTransition();
   const [filterList, setFilterList] = useState(all);
 
-  // console.log(JSON.stringify(all));
-
-
-
+ 
 
   const updateList = (e) => {
     console.log(filterList);
@@ -241,20 +228,19 @@ export default function Home() {
     });
   };
   return (
-    <div className="container text-center">
-      <h2 className="mt-8 text-3xl font-medium">
-        {"اكتب ما تبحث عنه".toUpperCase()}
+    <div className="container text-center mx-auto">
+      <h2 className="mt-8 text-3xl">
+        اكتب ما تبحث عنه
       </h2>
-
-      {/* <img src="/sign language/adjectives/غضبان.JPG" /> */}
-      <div dir="rtl" className="my-4 flex justify-center items-center">
+      <div dir="rtl" className="my-4  flex justify-center items-center mx-auto">
         <input
           dir="rtl"
-          className="bg-gray-300 outline-none text-gray-900  px-8 py-4 rounded-md text-2xl"
+          className="bg-gray-300 outline-none text-gray-900  px-8 py-4 rounded-md text-2xl w-10/12 md:w-auto "
           type="text"
           value={input}
           onChange={updateList}
         />
+
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-8 w-8 -mr-10"
@@ -266,23 +252,26 @@ export default function Home() {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
           />
         </svg>
       </div>
       <div className="grid gap-4">
         {input
-          ? filterList.slice(0,5).map((term, index) => (
+          ? filterList.slice(0, 5).map((term, index) => (
               <div
                 key={index}
                 className="flex flex-col justify-center items-center p-4"
               >
-                <img src={'/sign language/'+term?.item?.url} alt={term?.item?.name} />
+                <img
+                  src={"/sign language/" + term?.item?.url}
+                  alt={term?.item?.name}
+                />
                 <h3 className="text-xl">{term?.item?.name}</h3>
               </div>
             ))
           : null}
-          {/* {
+        {/* {
             console.log(filterList[0].item.url)
           } */}
       </div>
