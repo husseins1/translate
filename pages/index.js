@@ -283,13 +283,13 @@ export default function Home() {
   const [imgsNumber, setImgsNumber] = useState(20);
   const [refine,setRefine] = useState("");
   const handleRefine =(e)=>{
-    
     setInput("")
     if(e.target.innerText === refine){
       setRefine("");
       return;
     }
     setRefine(e.target.innerText);
+    
   }
   
 
@@ -304,15 +304,16 @@ export default function Home() {
   };
 
   useEffect(()=>{
+    
     const filter = categories.find((ele) => refine === ele.ar);
-   setImgsNumber(20);
+    setImgsNumber(20);
     if(!filter){
       setFuse(
         new Fuse(all, {
           includeScore: true,
           keys: ["name"],
         })
-      ); 
+        ); 
       return;
     }
     setFuse(
@@ -321,6 +322,8 @@ export default function Home() {
         keys: ["name"],
       })
       );  
+      
+
   },[refine]);
   return (
     <div className="container text-center mx-auto">
@@ -387,7 +390,9 @@ export default function Home() {
                 className="flex flex-col justify-center items-center p-4"
               >
                 <img src={"/sign language/" + term?.url} alt={term?.name} />
-                <h3 className="text-xl">{term?.name}</h3>
+                <h3 className="text-xl">
+                  {term?.name} 
+                </h3>
               </div>
             ))}
             {imgsNumber + 1 >= fuse._docs.length ? null : (
