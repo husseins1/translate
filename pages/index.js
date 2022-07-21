@@ -379,30 +379,31 @@ export default function Home() {
             ))
           : null}
 
-        { refine !=="" && input===""?(<>
-        
-        
-          {fuse._docs.slice(0,imgsNumber).map((term, index) => (
-              
+        {refine !== "" && input === "" ? (
+          <>
+            {fuse._docs.slice(0, imgsNumber).map((term, index) => (
               <div
-                 key={index}
-                 className="flex flex-col justify-center items-center p-4"
-                 >
-                 <img
-                   src={"/sign language/" + term?.url}
-                   alt={term?.name}
-                   />
-                 <h3 className="text-xl">{term?.name}</h3>
-               </div>
- 
- ))}
-        
- <button onClick={(e)=>(setImgsNumber(prev=>prev+10))} className="text-white outline-none p-4 m-4 bg-blue-400">المزيد</button>
- 
-        
-        </>)
-            
-            :null}
+                key={index}
+                className="flex flex-col justify-center items-center p-4"
+              >
+                <img src={"/sign language/" + term?.url} alt={term?.name} />
+                <h3 className="text-xl">{term?.name}</h3>
+              </div>
+            ))}
+            {imgsNumber + 1 >= fuse._docs.length ? null : (
+              <button
+                onClick={(e) =>
+                  imgsNumber + 10 >= fuse._docs.length
+                    ? setImgsNumber(fuse._docs.length - 1)
+                    : setImgsNumber((prev) => prev + 10)
+                }
+                className="text-white outline-none p-4 m-4 bg-blue-400"
+              >
+                المزيد
+              </button>
+            )}
+          </>
+        ) : null}
       </div>
     </div>
   );
