@@ -275,12 +275,12 @@ export default function Home() {
   const [fuse, setFuse] = useState(
     new Fuse(all, {
       includeScore: true,
-      keys: ["name"],
-     
+      keys: ["name"],   
     })
   );
   const [isPending, startTransition] = useTransition();
   const [filterList, setFilterList] = useState(all);
+  const [imgsNumber, setImgsNumber] = useState(20);
   const [refine,setRefine] = useState("");
   const handleRefine =(e)=>{
     
@@ -305,7 +305,7 @@ export default function Home() {
 
   useEffect(()=>{
     const filter = categories.find((ele) => refine === ele.ar);
-   
+   setImgsNumber(20);
     if(!filter){
       setFuse(
         new Fuse(all, {
@@ -319,13 +319,9 @@ export default function Home() {
       new Fuse(filter.list, {
         includeScore: true,
         keys: ["name"],
-        
       })
-    ); 
-    
-    
-    
-  },[refine])
+      );  
+  },[refine]);
   return (
     <div className="container text-center mx-auto">
       <h2 className="mt-8 text-3xl">اكتب ما تبحث عنه</h2>
@@ -359,7 +355,9 @@ export default function Home() {
             onClick={handleRefine}
             key={ele.list}
             className={` m-4 bg-gray-300 whitespace-nowrap
-             p-2 rounded hover:text-white text-sm ${refine===ele.ar && "bg-blue-400 text-white"}`}
+             p-2 rounded hover:text-white text-sm ${
+               refine === ele.ar && "bg-blue-400 text-white"
+             }`}
           >
             {ele.ar}
           </button>
@@ -380,6 +378,31 @@ export default function Home() {
               </div>
             ))
           : null}
+
+        { refine !=="" && input===""?(<>
+        
+        
+          {fuse._docs.slice(0,imgsNumber).map((term, index) => (
+              
+              <div
+                 key={index}
+                 className="flex flex-col justify-center items-center p-4"
+                 >
+                 <img
+                   src={"/sign language/" + term?.url}
+                   alt={term?.name}
+                   />
+                 <h3 className="text-xl">{term?.name}</h3>
+               </div>
+ 
+ ))}
+        
+ <button onClick={(e)=>(setImgsNumber(prev=>prev+10))} className="text-white outline-none p-4 m-4 bg-blue-400">المزيد</button>
+ 
+        
+        </>)
+            
+            :null}
       </div>
     </div>
   );
