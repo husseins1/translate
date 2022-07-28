@@ -270,6 +270,7 @@ const categories = [
 //   includeScore: true,
 //   keys: ["name"],
 // });
+
 export default function Home() {
   const [input, setInput] = useState("");
   const [fuse, setFuse] = useState(
@@ -326,6 +327,8 @@ export default function Home() {
 
   },[refine]);
   return (
+    <>
+      <nav className="p-4 bg-slate-900  " ><img className="sm:h-14 ml-4 h-10  " src="/zain-logo.png" alt="Zain logo" /></nav>
     <div className="container text-center mx-auto">
       <h2 className="mt-8 text-3xl">اكتب ما تبحث عنه</h2>
       <div dir="rtl" className="my-4  flex justify-center items-center mx-auto">
@@ -335,7 +338,7 @@ export default function Home() {
           type="text"
           value={input}
           onChange={updateList}
-        />
+          />
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -344,7 +347,7 @@ export default function Home() {
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={2}
-        >
+          >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -369,10 +372,10 @@ export default function Home() {
       <div className="grid gap-4">
         {input
           ? filterList.slice(0, 5).map((term, index) => (
-              <div
-                key={index}
-                className="flex flex-col justify-center items-center p-4"
-              >
+            <div
+            key={index}
+            className="flex flex-col justify-center items-center p-4"
+            >
                 <img
                   src={"/sign language/" + term?.item?.url}
                   alt={term?.item?.name}
@@ -388,7 +391,7 @@ export default function Home() {
               <div
                 key={index}
                 className="flex flex-col justify-center items-center p-4"
-              >
+                >
                 <img src={"/sign language/" + term?.url} alt={term?.name} />
                 <h3 className="text-xl">
                   {term?.name} 
@@ -397,12 +400,12 @@ export default function Home() {
             ))}
             {imgsNumber + 1 >= fuse._docs.length ? null : (
               <button
-                onClick={(e) =>
+              onClick={(e) =>
                   imgsNumber + 10 >= fuse._docs.length
                     ? setImgsNumber(fuse._docs.length - 1)
                     : setImgsNumber((prev) => prev + 10)
-                }
-                className="text-white outline-none p-4 m-4 bg-blue-400"
+                  }
+                  className="text-white outline-none p-4 m-4 bg-blue-400"
               >
                 المزيد
               </button>
@@ -411,5 +414,6 @@ export default function Home() {
         ) : null}
       </div>
     </div>
+                  </>
   );
 }
