@@ -35,7 +35,7 @@ const verbs = require
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const house = require
-  .context("../public/sign language/house", false, /\.(png|jpe?g|svg|jpg|JPG)$/)
+  .context("../public/sign language/house", false, /\.(png|jpe?g|gif|svg|jpg|JPG)$/)
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const animals = require
