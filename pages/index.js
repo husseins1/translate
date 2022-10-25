@@ -7,7 +7,7 @@ const getList = (paths, folderName) => {
   return paths.map(
     (ele) =>
       ({
-       name: ele.replace(/\.(png|jpe?g|svg|jpg|JPG)$/, ""),
+       name: ele.replace(/\.(png|jpe?g|svg|jpg|JPG|gif)$/, ""),
 
       url: `${folderName}/${ele}`})
   );
@@ -91,7 +91,7 @@ const school = require
   .context(
     "../public/sign language/school",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
