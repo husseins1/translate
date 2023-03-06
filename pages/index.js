@@ -18,7 +18,7 @@ const english = require
   .context(
     "../public/sign language/english",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
@@ -26,12 +26,12 @@ const months = require
   .context(
     "../public/sign language/months",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const verbs = require
-  .context("../public/sign language/verbs", false, /\.(png|jpe?g|svg|jpg|JPG)$/)
+  .context("../public/sign language/verbs", false, /\.(png|jpe?g|svg|jpg|JPG|gif)$/)
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const house = require
@@ -42,7 +42,7 @@ const animals = require
   .context(
     "../public/sign language/animals",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
@@ -50,19 +50,19 @@ const vegetables = require
   .context(
     "../public/sign language/vegetables",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const sport = require
-  .context("../public/sign language/sport", false, /\.(png|jpe?g|svg|jpg|JPG)$/)
+  .context("../public/sign language/sport", false, /\.(png|jpe?g|svg|gif|jpg|JPG)$/)
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const greetings = require
   .context(
     "../public/sign language/greetings",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
@@ -70,12 +70,12 @@ const science = require
   .context(
     "../public/sign language/science",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const arts = require
-  .context("../public/sign language/arts", false, /\.(png|jpe?g|svg|jpg|JPG)$/)
+  .context("../public/sign language/arts", false, /\.(png|jpe?g|svg|jpg|JPG|gif)$/)
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 
@@ -83,7 +83,7 @@ const computer = require
   .context(
     "../public/sign language/computer",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
@@ -96,26 +96,26 @@ const school = require
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const profs = require
-  .context("../public/sign language/profs", false, /\.(png|jpe?g|svg|jpg|JPG)$/)
+  .context("../public/sign language/profs", false, /\.(png|jpe?g|svg|jpg|JPG|gif)$/)
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const relgion = require
   .context(
     "../public/sign language/relgion",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const math = require
-  .context("../public/sign language/math", false, /\.(png|jpe?g|svg|jpg|JPG)$/)
+  .context("../public/sign language/math", false, /\.(png|jpe?g|svg|jpg|JPG|gif)$/)
   .keys()
   .map((ele) => ele.replace(/\../, ""));
 const adjectives = require
   .context(
     "../public/sign language/adjectives",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
@@ -123,7 +123,7 @@ const transport = require
   .context(
     "../public/sign language/transport",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
@@ -131,7 +131,7 @@ const country = require
   .context(
     "../public/sign language/country",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
@@ -139,7 +139,7 @@ const social = require
   .context(
     "../public/sign language/social",
     false,
-    /\.(png|jpe?g|svg|jpg|JPG)$/
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
