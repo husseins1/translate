@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTransition } from "react";
 import Fuse from "fuse.js";
+import MyLink from "../components/MyLink";
 
 const getList = (paths, folderName) => {
   
@@ -328,92 +329,119 @@ export default function Home() {
   },[refine]);
   return (
     <>
-      <nav className="p-4 bg-slate-900  " ><img className="sm:h-14 ml-4 h-10  " src="/zain-logo.png" alt="Zain logo" /></nav>
-    <div className="container text-center mx-auto">
-      <h2 className="mt-8 text-3xl">اكتب ما تبحث عنه</h2>
-      <div dir="rtl" className="my-4  flex justify-center items-center mx-auto">
-        <input
-          dir="rtl"
-          className="bg-gray-300 outline-none text-gray-900  px-8 py-4 rounded-md text-2xl w-10/12 md:w-auto "
-          type="text"
-          value={input}
-          onChange={updateList}
-          />
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8 -mr-10"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
+      <nav className="p-4  ">
+        <img
+          className="sm:h-10 ml-4 h-8  "
+          src="/zain-logo.png"
+          alt="Zain logo"
+        />
+      </nav>
+      <div className="text-center ">
+        <div
+          className="w-full bg-cover pt-6 pb-6"
+          style={{ backgroundImage: "url(background.jpg)" }}
+        >
+          <h3 className="text-white text-lg">ALL IN ONE PLACE</h3>
+          <h1 className="text-white text-5xl my-4">
+            ALL THE WORDS YOU CAN <br /> THINK OF ARE ONE CLICK AWAY
+          </h1>
+          <h3 className="text-white text-lg">
+            LEARN SIGN LANGUAGE WITH ZAIN !
+          </h3>
+          <div
+            dir="rtl"
+            className="my-4  flex justify-center items-center mx-auto"
           >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
-      </div>
-      <div className="flex justify-center items-center flex-wrap">
-        {categories.map((ele) => (
-          <button
-            onClick={handleRefine}
-            key={ele.list}
-            className={` m-4 bg-gray-300 whitespace-nowrap
+            <input
+              dir="rtl"
+              className="bg-white outline-none text-gray-900  px-8 py-4 rounded-full text-2xl w-10/12 md:w-[400px] "
+              type="text"
+              value={input}
+              onChange={updateList}
+            />
+            <span
+              className="bg-purple-600 h-12 w-12 rounded-full inline-flex justify-center items-center
+            -mr-14 "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-8 w-8 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center flex-wrap">
+          
+           
+   
+          <MyLink title={"Hi"} link={"df"} svg={"fd"} />
+          {categories.map((ele) => (
+            <button
+              onClick={handleRefine}
+              key={ele.list}
+              className={` m-4 bg-gray-300 whitespace-nowrap
              p-2 rounded hover:text-white text-sm ${
                refine === ele.ar && "bg-blue-400 text-white"
              }`}
-          >
-            {ele.ar}
-          </button>
-        ))}
-      </div>
-      <div className="grid gap-4">
-        {input
-          ? filterList.slice(0, 5).map((term, index) => (
-            <div
-            key={index}
-            className="flex flex-col justify-center items-center p-4"
             >
-                <img
-                  src={"/sign language/" + term?.item?.url}
-                  alt={term?.item?.name}
-                />
-                <h3 className="text-xl">{term?.item?.name}</h3>
-              </div>
-            ))
-          : null}
-
-        {refine !== "" && input === "" ? (
-          <>
-            {fuse._docs.slice(0, imgsNumber).map((term, index) => (
-              <div
-                key={index}
-                className="flex flex-col justify-center items-center p-4"
+              {ele.ar}
+            </button>
+          ))}
+        </div>
+        <div className="grid gap-4">
+          {input
+            ? filterList.slice(0, 5).map((term, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col justify-center items-center p-4"
                 >
-                <img src={"/sign language/" + term?.url} alt={term?.name} />
-                <h3 className="text-xl">
-                  {term?.name} 
-                </h3>
-              </div>
-            ))}
-            {imgsNumber + 1 >= fuse._docs.length ? null : (
-              <button
-              onClick={(e) =>
-                  imgsNumber + 10 >= fuse._docs.length
-                    ? setImgsNumber(fuse._docs.length - 1)
-                    : setImgsNumber((prev) => prev + 10)
+                  <img
+                    src={"/sign language/" + term?.item?.url}
+                    alt={term?.item?.name}
+                  />
+                  <h3 className="text-xl">{term?.item?.name}</h3>
+                </div>
+              ))
+            : null}
+
+          {refine !== "" && input === "" ? (
+            <>
+              {fuse._docs.slice(0, imgsNumber).map((term, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col justify-center items-center p-4"
+                >
+                  <img src={"/sign language/" + term?.url} alt={term?.name} />
+                  <h3 className="text-xl">{term?.name}</h3>
+                </div>
+              ))}
+              {imgsNumber + 1 >= fuse._docs.length ? null : (
+                <button
+                  onClick={(e) =>
+                    imgsNumber + 10 >= fuse._docs.length
+                      ? setImgsNumber(fuse._docs.length - 1)
+                      : setImgsNumber((prev) => prev + 10)
                   }
                   className="text-white outline-none p-4 m-4 bg-blue-400"
-              >
-                المزيد
-              </button>
-            )}
-          </>
-        ) : null}
+                >
+                  المزيد
+                </button>
+              )}
+            </>
+          ) : null}
+        </div>
       </div>
-    </div>
-                  </>
+    </>
   );
 }
