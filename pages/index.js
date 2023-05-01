@@ -188,82 +188,120 @@ const all = [
   ...socialObj,
 ];
 
-const categories = [
+export const categories = [
   {
     ar: "ابجدية اللغة الانكليزية",
     list: englishObj,
+    en: "English",
+    icon: "/icons/united-kingdom.png",
   },
   {
     ar: "الاشهر والايام والوقت",
     list: monthsObj,
+    en: "Months&Days",
+    icon: "/icons/month.png",
   },
   {
     ar: "الافعال",
     list: verbsObj,
+    en: "Verbs",
+    icon: "/icons/action.png",
   },
   {
     ar: "البيت ومحتوياته",
     list: houseObj,
+    en: "Home",
+    icon: "/icons/house.png",
   },
   {
     ar: "الحيوانات والطيور والحشرات",
     list: animalsObj,
+    en: "Animals",
+    icon: "/icons/livestock.png",
   },
   {
     ar: "الخضروات",
     list: vegetablesObj,
+    en: "Vegetables",
+    icon: "/icons/vegetable.png",
   },
   {
     ar: "الرياضة",
     list: sportObj,
+    en: "Sport",
+    icon: "/icons/sports.png",
   },
   {
     ar: "العلاقات الاجتماعية والتحية والسلام",
     list: greetingsObj,
+    en: "Greetings",
+    icon: "/icons/greetings.png",
   },
   {
     ar: "العلوم والظواهر الطبيعية",
     list: scienceObj,
+    en: "Science",
+    icon: "/icons/chemistry.png",
   },
   {
     ar: "الفنون",
     list: artsObj,
+    en: "Arts",
+    icon: "/icons/palette.png",
   },
   {
     ar: "الكمبيوتر",
     list: computerObj,
+    en: "Computer",
+    icon: "/icons/ux.png",
   },
   {
     ar: "المدرسة ومستلزماتها",
     list: schoolObj,
+    en: "School",
+    icon: "/icons/school.png",
   },
   {
     ar: "المهن",
     list: profsObj,
+    en: "Jobs",
+    icon: "/icons/suitcase.png",
   },
   {
     ar: "ديانة",
     list: relgionObj,
+    en: "Religion",
+    icon: "/icons/religion.png",
   },
   {
     ar: "رياضيات",
     list: mathObj,
+    en: "Math",
+    icon: "/icons/think.png",
   },
   {
     ar: "صفات",
     list: adjectivesObj,
+    en: "Adjectives",
+    icon: "/icons/smiling-face.png",
   },
   {
     ar: "وسائط النقل",
     list: transportObj,
+    en: "Transportation",
+    icon: "/icons/delivery-truck.png",
   },
   {
     ar: "وطنية",
     list: countryObj,
+    en: "Patriotism",
+    icon: "/icons/patriot.png",
   },
   {
     ar: "اجتماعيات",
     list: socialObj,
+    en: "Social",
+    icon: "/icons/social.png",
   },
 ];
 
@@ -384,9 +422,11 @@ export default function Home() {
         <div className="flex justify-center items-center flex-wrap">
           
            
-   
-          <MyLink title={"Hi"} link={"df"} svg={"fd"} />
-          {categories.map((ele) => (
+          {categories.map(ele=>(
+            <MyLink key={ele.en} title={ele.en} link={ele.en} svg={ele.icon} />
+
+          ))}
+          {/* {categories.map((ele) => (
             <button
               onClick={handleRefine}
               key={ele.list}
@@ -397,7 +437,7 @@ export default function Home() {
             >
               {ele.ar}
             </button>
-          ))}
+          ))} */}
         </div>
         <div className="grid gap-4">
           {input
