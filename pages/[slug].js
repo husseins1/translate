@@ -19,7 +19,10 @@ export default function Section({categorie}) {
             className="h-[calc(100vh-72px)] w-full "
           />
         </sidebar>
-        <div>contnet</div>
+        <div>
+          {/* <img src={"/sign language/"+categorie.list[0]?.url} /> */}
+          Content
+          </div>
       </div>
     </>
   );
