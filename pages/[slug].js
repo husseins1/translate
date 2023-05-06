@@ -5,24 +5,33 @@ export default function Section({categorie}) {
     console.log(categorie)
   return (
     <>
-      <nav className="p-4  ">
+      <nav className="p-4  sticky top-0">
         <img
           className="sm:h-10 ml-4 h-8  "
           src="/zain-logo.png"
           alt="Zain logo"
         />
       </nav>
-      <div className="flex  ">
-        <sidebar className="basis-1/4">
+      <div className="flex ">
+        <sidebar className="basis-1/4 hidden md:block ">
           <img
             src="background-port.jpg"
-            className="h-[calc(100vh-72px)] w-full "
+            className="hidden h-[calc(100vh-72px)] w-full sticky top-[72px] md:block "
           />
         </sidebar>
-        <div>
-          {/* <img src={"/sign language/"+categorie.list[0]?.url} /> */}
-          Content
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 ">
+          {categorie.list.map((ele) => {
+            return (
+              <figure className="mx-auto text-center" key={ele.name}>
+                <img
+                  className="md:max-w-sm md:h-36  w-full mx-auto"
+                  src={"/sign language/" + ele?.url}
+                />
+                <figcaption className="text-center">{ele.name}</figcaption>
+              </figure>
+            );
+          })}
+        </div>
       </div>
     </>
   );
