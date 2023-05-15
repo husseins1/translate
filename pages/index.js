@@ -379,12 +379,16 @@ export default function Home() {
           className="w-full bg-cover pt-6 pb-6"
           style={{ backgroundImage: "url(background.jpg)" }}
         >
-          <h3 className="text-white text-lg">ALL IN ONE PLACE</h3>
+          <h3 className="text-white text-lg">الكل في مكان واحد</h3>
           <h1 className="text-white text-5xl my-4">
-            ALL THE WORDS YOU CAN <br /> THINK OF ARE ONE CLICK AWAY
+            كل الكلمات التي تستطيع 
+            
+             <br /> 
+             التفكير بها على بعد نقرة واحدة
+             
           </h1>
           <h3 className="text-white text-lg">
-            LEARN SIGN LANGUAGE WITH ZAIN !
+            تعلم لغة الاشارة مع زين
           </h3>
           <div
             dir="rtl"
@@ -423,7 +427,7 @@ export default function Home() {
           
            
           {categories.map(ele=>(
-            <MyLink key={ele.en} title={ele.en} link={ele.en} svg={ele.icon} />
+            <MyLink key={ele.en} title={ele.ar} link={ele.en} svg={ele.icon} />
 
           ))}
           {/* {categories.map((ele) => (
