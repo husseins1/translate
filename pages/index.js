@@ -15,14 +15,14 @@ const getList = (paths, folderName) => {
 };
 
 
-const english = require
-  .context(
-    "../public/sign language/english",
-    false,
-    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
-  )
-  .keys()
-  .map((ele) => ele.replace(/\../, ""));
+// const english = require
+//   .context(
+//     "../public/sign language/english",
+//     false,
+//     /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+//   )
+//   .keys()
+//   .map((ele) => ele.replace(/\../, ""));
 const months = require
   .context(
     "../public/sign language/months",
@@ -144,8 +144,80 @@ const social = require
   )
   .keys()
   .map((ele) => ele.replace(/\../, ""));
+const family = require
+  .context(
+    "../public/sign language/family",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const history = require
+  .context(
+    "../public/sign language/history",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const arabic = require
+  .context(
+    "../public/sign language/arabic",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const baghdad = require
+  .context(
+    "../public/sign language/baghdad",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const company = require
+  .context(
+    "../public/sign language/company",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const geo = require
+  .context(
+    "../public/sign language/geo",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const iraq = require
+  .context(
+    "../public/sign language/iraq",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const zain = require
+  .context(
+    "../public/sign language/zain",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
+const general = require
+  .context(
+    "../public/sign language/general",
+    false,
+    /\.(png|jpe?g|svg|jpg|JPG|gif)$/
+  )
+  .keys()
+  .map((ele) => ele.replace(/\../, ""));
 
-const englishObj = getList(english, "english");
+// const englishObj = getList(english, "english");
 const monthsObj = getList(months, "months");
 const verbsObj = getList(verbs, "verbs");
 const houseObj = getList(house, "house");
@@ -164,10 +236,19 @@ const countryObj = getList(country, "country");
 const adjectivesObj = getList(adjectives, "adjectives");
 const animalsObj = getList(animals, "animals");
 const profsObj = getList(profs, "profs");
-const socialObj = getList(social, "social");
+// const socialObj = getList(social, "social");
+const familyObj = getList(family, "family");
+const historyObj = getList(history, "history");
+const arabicObj = getList(arabic, "arabic");
+const baghdadObj = getList(baghdad, "baghdad");
+const companyObj = getList(company, "company");
+const generalObj = getList(general, "general");
+const geoObj = getList(geo, "geo");
+const iraqObj = getList(iraq, "iraq");
+const zainObj = getList(zain, "zain");
 
 const all = [
-  ...englishObj,
+  // ...englishObj,
   ...monthsObj,
   ...verbsObj,
   ...houseObj,
@@ -185,21 +266,48 @@ const all = [
   ...adjectivesObj,
   ...animalsObj,
   ...profsObj,
-  ...socialObj,
+  // ...socialObj,
+  ...familyObj,
+  ...historyObj,
+  ...arabicObj,
+  ...baghdadObj,
+  ...companyObj,
+  ...generalObj,
+  ...geoObj,
+  ...iraqObj,
+  ...zainObj,
 ];
 
 export const categories = [
-  {
-    ar: "ابجدية اللغة الانكليزية",
-    list: englishObj,
-    en: "English",
-    icon: "/icons/united-kingdom.png",
-  },
+  // {
+  //   ar: "ابجدية اللغة الانكليزية",
+  //   list: englishObj,
+  //   en: "English",
+  //   icon: "/icons/united-kingdom.png",
+  // },
   {
     ar: "الاشهر والايام والوقت",
     list: monthsObj,
     en: "Months&Days",
     icon: "/icons/month.png",
+  },
+  {
+    ar: "أبجدية اللغة العربية",
+    list: arabicObj,
+    en: "Arabic",
+    icon: "/icons/arabic.png",
+  },
+  {
+    ar: "مناطق بغداد",
+    list: baghdadObj,
+    en: "Baghdad",
+    icon: "/icons/dome.png",
+  },
+  {
+    ar: "مفردات اقسام الشركة",
+    list: companyObj,
+    en: "Company",
+    icon: "/icons/building.png",
   },
   {
     ar: "الافعال",
@@ -208,10 +316,34 @@ export const categories = [
     icon: "/icons/action.png",
   },
   {
+    ar: "مصطلحات عامة",
+    list: generalObj,
+    en: "General",
+    icon: "/icons/three-friends.png",
+  },
+  {
+    ar: "محافظات العراق",
+    list: iraqObj,
+    en: "Iraq",
+    icon: "/icons/great-mosque-of-samarra.png",
+  },
+  {
+    ar: "مراكز مبيعات زين العراق",
+    list: zainObj,
+    en: "ROS",
+    icon: "/icons/shopping.png",
+  },
+  {
     ar: "البيت ومحتوياته",
     list: houseObj,
     en: "Home",
     icon: "/icons/house.png",
+  },
+  {
+    ar: "جغرافية",
+    list: geoObj,
+    en: "Geo",
+    icon: "/icons/globe-earth.png",
   },
   {
     ar: "الحيوانات والطيور والحشرات",
@@ -250,7 +382,7 @@ export const categories = [
     icon: "/icons/palette.png",
   },
   {
-    ar: "الكمبيوتر",
+    ar: "الحاسوب الالكتروني",
     list: computerObj,
     en: "Computer",
     icon: "/icons/ux.png",
@@ -297,11 +429,23 @@ export const categories = [
     en: "Patriotism",
     icon: "/icons/patriot.png",
   },
+  // {
+  //   ar: "اجتماعيات",
+  //   list: socialObj,
+  //   en: "Social",
+  //   icon: "/icons/social.png",
+  // },
   {
-    ar: "اجتماعيات",
-    list: socialObj,
-    en: "Social",
+    ar: "العائلة",
+    list: familyObj,
+    en: "family",
     icon: "/icons/social.png",
+  },
+  {
+    ar: "التاريخ",
+    list: historyObj,
+    en: "history",
+    icon: "/icons/war.png",
   },
 ];
 
@@ -381,15 +525,11 @@ export default function Home() {
         >
           <h3 className="text-white text-lg">الكل في مكان واحد</h3>
           <h1 className="text-white text-5xl my-4">
-            كل الكلمات التي تستطيع 
-            
-             <br /> 
-             التفكير بها على بعد نقرة واحدة
-             
+            كل الكلمات التي تستطيع
+            <br />
+            التفكير بها على بعد نقرة واحدة
           </h1>
-          <h3 className="text-white text-lg">
-            تعلم لغة الاشارة مع زين
-          </h3>
+          <h3 className="text-white text-lg">تعلم لغة الاشارة مع زين</h3>
           <div
             dir="rtl"
             className="my-4  flex justify-center items-center mx-auto"
@@ -402,7 +542,7 @@ export default function Home() {
               onChange={updateList}
             />
             <span
-              className="bg-purple-600 h-12 w-12 rounded-full inline-flex justify-center items-center
+              className="bg-[#003D68] h-12 w-12 rounded-full inline-flex justify-center items-center
             -mr-14 "
             >
               <svg
@@ -424,11 +564,8 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center items-center flex-wrap">
-          
-           
-          {categories.map(ele=>(
+          {categories.map((ele) => (
             <MyLink key={ele.en} title={ele.ar} link={ele.en} svg={ele.icon} />
-
           ))}
           {/* {categories.map((ele) => (
             <button

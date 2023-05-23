@@ -2,7 +2,7 @@ import React from 'react'
 import { categories } from '.';
 
 export default function Section({categorie}) {
-    console.log(categorie)
+   
   return (
     <>
       <nav className="p-4  sticky top-0">
